@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common'
-import { TourManagersController } from 'tour-managers/tour-managers.controller'
-import { TourManagersService } from 'tour-managers/tour-managers.service'
+import { TourManagersController } from './tour-managers.controller'
+import { TourManagersService } from './tour-managers.service'
 
 @Module({
   providers: [TourManagersService],

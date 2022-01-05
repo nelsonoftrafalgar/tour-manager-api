@@ -1,7 +1,7 @@
 import { ConfigModule } from '@nestjs/config'
 import { KnexModule } from 'nestjs-knex'
 import { Module } from '@nestjs/common'
-import { TourManagersModule } from 'tour-managers/tour-managers.module'
+import { TourManagersModule } from '../src/tour-managers/tour-managers.module'
 
 @Module({
   imports: [

@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing'
 
-import { TourManagersController } from './tour-managers.controller'
-import { TourManagersService } from './tour-managers.service'
+import { TourManagersController } from '../../src/tour-managers/tour-managers.controller'
+import { TourManagersService } from '../../src/tour-managers/tour-managers.service'
 
 describe('TourManagersController', () => {
   let controller: TourManagersController
