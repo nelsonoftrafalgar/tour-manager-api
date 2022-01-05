@@ -1,18 +1,31 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { TourManagersService } from './tour-managers.service';
+import { Test, TestingModule } from '@nestjs/testing'
+
+import { TourManagersService } from './tour-managers.service'
 
 describe('TourManagersService', () => {
-  let service: TourManagersService;
+  let service: TourManagersService
+
+  const mockService = {
+    getTourManagers: jest.fn(() => Promise.resolve({})),
+    filterTourManagers: jest.fn((name) => Promise.resolve(name)),
+  }
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [TourManagersService],
-    }).compile();
+    })
+      .overrideProvider(TourManagersService)
+      .useValue(mockService)
+      .compile()
 
-    service = module.get<TourManagersService>(TourManagersService);
-  });
+    service = module.get<TourManagersService>(TourManagersService)
+  })
 
-  it('should be defined', () => {
-    expect(service).toBeDefined();
-  });
-});
+  it('should get all tour managers', async () => {
+    expect(await service.getTourManagers()).toMatchObject({})
+  })
+
+  it('should get tour managers filtered by name', async () => {
+    expect(await service.filterTourManagers('Sam')).toEqual('Sam')
+  })
+})

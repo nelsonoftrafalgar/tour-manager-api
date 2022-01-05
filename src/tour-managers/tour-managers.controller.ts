@@ -1,8 +1,8 @@
 import { Controller, Get, Query } from '@nestjs/common'
 import { ApiOkResponse } from '@nestjs/swagger'
-import { TourManager, TourManagerNameDTO } from 'tour-managers/tour-managers.dto'
+import { TourManager, TourManagerNameDTO } from './tour-managers.dto'
 
-import { TourManagersService } from 'tour-managers/tour-managers.service'
+import { TourManagersService } from './tour-managers.service'
 
 @Controller('tour-managers')
 export class TourManagersController {

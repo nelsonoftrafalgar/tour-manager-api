@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { InjectKnex, Knex } from 'nestjs-knex'
-import { TourManager } from 'tour-managers/tour-managers.dto'
+import { TourManager } from './tour-managers.dto'
 
 @Injectable()
 export class TourManagersService {
