@@ -32,18 +32,18 @@ describe('TourManagersController (e2e)', () => {
   })
 
   it('should get all tour managers', () => {
-    return request(app.getHttpServer()).get('/tour-managers').expect(200).expect({})
+    return request(app.getHttpServer()).get('/tour_managers').expect(200).expect({})
   })
 
   it('should filter tour managers by name', async () => {
-    const response = await request(app.getHttpServer()).get('/tour-managers').query({ name: 'Sam' })
+    const response = await request(app.getHttpServer()).get('/tour_managers').query({ name: 'Sam' })
 
     expect(response.status).toEqual(200)
     expect(response.text).toEqual('Sam')
   })
 
   it('should validate tour manager name', async () => {
-    const response = await request(app.getHttpServer()).get('/tour-managers').query({ name: 'Sam!' })
+    const response = await request(app.getHttpServer()).get('/tour_managers').query({ name: 'Sam!' })
 
     expect(response.status).toEqual(400)
     expect(response.badRequest).toBeTruthy()

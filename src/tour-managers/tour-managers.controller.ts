@@ -4,7 +4,7 @@ import { TourManager, TourManagerNameDTO } from './tour-managers.dto'
 
 import { TourManagersService } from './tour-managers.service'
 
-@Controller('tour-managers')
+@Controller('tour_managers')
 export class TourManagersController {
   constructor(private readonly tourManagersService: TourManagersService) {}
 
