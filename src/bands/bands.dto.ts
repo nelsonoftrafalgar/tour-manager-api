@@ -23,6 +23,14 @@ export class Band {
 
 export class BandName extends PickType(Band, ['band_id', 'band_name']) {}
 
+export class BandNameDTO {
+  @ValidateIf(({ name }) => name?.length > 0)
+  @ApiPropertyOptional()
+  @MaxLength(250)
+  @Matches(NAME_CONSTRAIN)
+  name: string
+}
+
 export class BandDTO {
   @ApiProperty()
   @IsUUID()
@@ -47,32 +55,5 @@ export class BandDTO {
   created_at: string
 }
 
-export class BandIdDTO {
-  @ApiProperty()
-  @IsUUID()
-  band_id: string
-}
-
-export class BandNameDTO {
-  @ValidateIf(({ name }) => name?.length > 0)
-  @ApiPropertyOptional()
-  @MaxLength(250)
-  @Matches(NAME_CONSTRAIN)
-  name: string
-}
-
-export class NewBandDTO {
-  @ApiProperty()
-  @MaxLength(250)
-  @IsString()
-  @Matches(NAME_CONSTRAIN)
-  @Matches(WHITESPACE_CONSTRAIN)
-  band_name: string
-
-  @ApiProperty()
-  @MaxLength(250)
-  @IsString()
-  @Matches(NAME_CONSTRAIN)
-  @Matches(WHITESPACE_CONSTRAIN)
-  band_frontman: string
-}
+export class BandIdDTO extends PickType(BandDTO, ['band_id']) {}
+export class NewBandDTO extends PickType(BandDTO, ['band_name', 'band_frontman']) {}
