@@ -1,3 +1,4 @@
+import { BandsModule } from '../src/bands/bands.module'
 import { ConfigModule } from '@nestjs/config'
 import { KnexModule } from 'nestjs-knex'
 import { Module } from '@nestjs/common'
@@ -20,6 +21,7 @@ import { TourManagersModule } from '../src/tour-managers/tour-managers.module'
       },
     }),
     TourManagersModule,
+    BandsModule,
   ],
 })
 export class AppModule {}
