@@ -6,8 +6,8 @@ describe('TourManagersService', () => {
   let service: TourManagersService
 
   const mockService = {
-    getTourManagers: jest.fn(() => Promise.resolve({})),
-    filterTourManagers: jest.fn((name) => Promise.resolve(name)),
+    getTourManagers: jest.fn().mockResolvedValue({}),
+    filterTourManagers: jest.fn().mockResolvedValue('Sam'),
   }
 
   beforeEach(async () => {

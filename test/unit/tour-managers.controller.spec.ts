@@ -22,6 +22,6 @@ describe('TourManagersController', () => {
   })
 
   it('should be able to get tour managers list', () => {
-    expect(controller.getTourManagers({ name: undefined })).toEqual({})
+    expect(controller.getTourManagers({ name: undefined })).toMatchObject({})
   })
 })
