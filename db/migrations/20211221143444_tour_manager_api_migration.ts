@@ -13,8 +13,16 @@ export async function up(knex: Knex): Promise<void> {
       table.string('band_name', 250).notNullable()
       table.string('band_frontman', 250).notNullable()
     })
+    .createTable('concerts', (table) => {
+      table.uuid('concert_id').notNullable().primary()
+      table.timestamps(true, true)
+      table.string('concert_date', 250).notNullable()
+      table.string('concert_place', 250).notNullable()
+      table.uuid('band_id').references('band_id').inTable('bands').notNullable()
+      table.uuid('tour_manager_id').references('tour_manager_id').inTable('tour_managers').notNullable()
+    })
 }
 
 export async function down(knex: Knex): Promise<void> {
-  return knex.schema.dropTable('tour_managers').dropTable('bands')
+  return knex.schema.dropTable('tour_managers').dropTable('bands').dropTable('concerts')
 }
