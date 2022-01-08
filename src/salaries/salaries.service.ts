@@ -42,7 +42,7 @@ export class SalariesService {
       .innerJoin('tour_managers', 'salaries.tour_manager_id', '=', 'tour_managers.tour_manager_id')
       .modify(function (queryBuilder) {
         if (query.concert_id) {
-          queryBuilder.where('salaries.project_id', query.concert_id)
+          queryBuilder.where('salaries.concert_id', query.concert_id)
         }
         if (query.tour_manager_id) {
           queryBuilder.where('salaries.tour_manager_id', query.tour_manager_id)

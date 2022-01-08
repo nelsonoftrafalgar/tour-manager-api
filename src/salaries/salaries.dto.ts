@@ -1,4 +1,4 @@
-import { ApiProperty, OmitType, PickType } from '@nestjs/swagger'
+import { ApiProperty, ApiPropertyOptional, OmitType, PickType } from '@nestjs/swagger'
 import { IsString, IsUUID, Matches, MaxLength } from 'class-validator'
 
 export const AMOUNT_CONSTRAIN = /^\d+(,\d{1,2})?$/
@@ -54,4 +54,17 @@ export class SalaryDTO {
 
 export class DeleteSalaryDTO extends PickType(SalaryDTO, ['salary_id']) {}
 export class NewSalaryDTO extends OmitType(SalaryDTO, ['salary_id']) {}
-export class NewReportDTO extends OmitType(SalaryDTO, ['salary_id', 'amount']) {}
+
+export class NewReportDTO {
+  @ApiPropertyOptional()
+  @IsUUID()
+  band_id: string
+
+  @ApiPropertyOptional()
+  @IsUUID()
+  concert_id: string
+
+  @ApiPropertyOptional()
+  @IsUUID()
+  tour_manager_id: string
+}

@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Param, Post, Put, Query } from '@nestjs/common'
-import { ApiConflictResponse, ApiOkResponse } from '@nestjs/swagger'
+import { ApiConflictResponse, ApiCreatedResponse, ApiOkResponse } from '@nestjs/swagger'
 import { BandIdDTO } from '../../src/bands/bands.dto'
 import { Concert, ConcertDTO, ConcertPlaceDTO, NewConcertDTO } from './concerts.dto'
 import { ConcertsService } from './concerts.service'
@@ -22,7 +22,7 @@ export class ConcertsController {
 
   @Post()
   @ApiConflictResponse({ description: 'Concert already exists in DB' })
-  @ApiOkResponse({ type: [Concert], description: 'Add new concert' })
+  @ApiCreatedResponse({ type: [Concert], description: 'Add new concert' })
   createConcert(@Body() data: NewConcertDTO) {
     return this.concertService.createConcert(data)
   }

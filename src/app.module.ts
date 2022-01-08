@@ -3,10 +3,8 @@ import { ConcertsModule } from '../src/concerts/concerts.module'
 import { ConfigModule } from '@nestjs/config'
 import { KnexModule } from 'nestjs-knex'
 import { Module } from '@nestjs/common'
+import { SalariesModule } from './salaries/salaries.module'
 import { TourManagersModule } from '../src/tour-managers/tour-managers.module'
-import { SalariesService } from './salaries/salaries.service';
-import { SalariesController } from './salaries/salaries.controller';
-import { SalariesModule } from './salaries/salaries.module';
 
 @Module({
   imports: [
@@ -29,7 +27,5 @@ import { SalariesModule } from './salaries/salaries.module';
     ConcertsModule,
     SalariesModule,
   ],
-  providers: [SalariesService],
-  controllers: [SalariesController],
 })
 export class AppModule {}

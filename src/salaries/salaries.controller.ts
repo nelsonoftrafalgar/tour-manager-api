@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, Post, Put, Query } from '@nestjs/common'
-import { ApiConflictResponse, ApiOkResponse } from '@nestjs/swagger'
+import { ApiConflictResponse, ApiCreatedResponse, ApiOkResponse } from '@nestjs/swagger'
 import { DeleteSalaryDTO, NewReportDTO, NewSalaryDTO, Salary, SalaryDTO } from './salaries.dto'
 import { SalariesService } from './salaries.service'
 
@@ -14,7 +14,7 @@ export class SalariesController {
   }
 
   @Post()
-  @ApiOkResponse({ type: [Salary], description: 'Add new salary' })
+  @ApiCreatedResponse({ type: [Salary], description: 'Add new salary' })
   @ApiConflictResponse({ description: 'Salary already exists in DB' })
   createSalary(@Body() data: NewSalaryDTO) {
     return this.salariesService.createSalary(data)
