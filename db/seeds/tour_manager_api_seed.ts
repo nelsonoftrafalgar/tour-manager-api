@@ -4,6 +4,7 @@ export async function seed(knex: Knex): Promise<void> {
   await knex('tour_managers').del()
   await knex('bands').del()
   await knex('concerts').del()
+  await knex('salaries').del()
   await knex('tour_managers').insert([
     {
       tour_manager_id: '484c3155-78d2-4d0c-ab09-dab3768803e4',
@@ -109,6 +110,35 @@ export async function seed(knex: Knex): Promise<void> {
       concert_place: 'Berlin',
       band_id: '3e3d8eee-dc3a-422f-9658-b08f61b84d1d',
       tour_manager_id: '5b23ace0-b302-4df4-91da-1c9d56c1332c',
+    },
+  ])
+  await knex('salaries').insert([
+    {
+      salary_id: '7815498a-171b-4a65-8b70-966f5c9e3f7c',
+      created_at: knex.fn.now(),
+      updated_at: knex.fn.now(),
+      amount: '239756',
+      concert_id: '2e756ddc-191a-4728-97a4-e90a6ffe4955',
+      band_id: 'd471e2c6-0282-4314-98bc-49836809eb57',
+      tour_manager_id: '484c3155-78d2-4d0c-ab09-dab3768803e4',
+    },
+    {
+      salary_id: '774e9a5f-da01-4201-9d51-3bbed4aa7016',
+      created_at: knex.fn.now(),
+      updated_at: knex.fn.now(),
+      amount: '398567',
+      concert_id: '125d1ce0-3c00-4944-90d2-6e704e2e2ae0',
+      band_id: 'c45757a0-7fd4-40e4-9483-e34a01bc1ccc',
+      tour_manager_id: '8074596c-3a5d-40d1-823b-ad595bb39be8',
+    },
+    {
+      salary_id: '3c55e505-f65a-4df7-9c2d-d82a19fbc9e8',
+      created_at: knex.fn.now(),
+      updated_at: knex.fn.now(),
+      amount: '235735',
+      concert_id: 'fde309ae-2f7c-4473-8f0f-f99f6166a98a',
+      band_id: '557ac722-fca4-47b0-b004-5bfabb145a22',
+      tour_manager_id: 'c55f9488-8e4b-48c9-a75f-99faf2e77f1b',
     },
   ])
 }
