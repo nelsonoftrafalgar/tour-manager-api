@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Post, Put, Query } from '@nestjs/common'
 import { ApiConflictResponse, ApiOkResponse } from '@nestjs/swagger'
-import { BandIdDTO } from 'bands/bands.dto'
+import { BandIdDTO } from '../../src/bands/bands.dto'
 import { Concert, ConcertDTO, ConcertPlaceDTO, NewConcertDTO } from './concerts.dto'
 import { ConcertsService } from './concerts.service'
 

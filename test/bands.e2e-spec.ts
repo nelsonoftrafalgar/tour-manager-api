@@ -126,10 +126,41 @@ describe('BandsController (e2e)', () => {
   })
 
   it('should validate updated band data', async () => {
-    const response = await request(app.getHttpServer()).put('/bands').send({
+    let response: request.Response
+    response = await request(app.getHttpServer()).put('/bands').send({
       band_name: 'mock band name',
       band_frontman: 'mock band frontman',
       band_id: '3e3d8eee-dc3a-422f-9658-b08f61b84d1d',
+      created_at: '2022-01-06T17:30:05.519Z!',
+    })
+
+    expect(response.status).toEqual(400)
+    expect(response.badRequest).toBeTruthy()
+
+    response = await request(app.getHttpServer()).put('/bands').send({
+      band_name: 'mock band name ',
+      band_frontman: 'mock band frontman',
+      band_id: '3e3d8eee-dc3a-422f-9658-b08f61b84d1d',
+      created_at: '2022-01-06T17:30:05.519Z!',
+    })
+
+    expect(response.status).toEqual(400)
+    expect(response.badRequest).toBeTruthy()
+
+    response = await request(app.getHttpServer()).put('/bands').send({
+      band_name: 'mock band name',
+      band_frontman: 'mock band frontman ',
+      band_id: '3e3d8eee-dc3a-422f-9658-b08f61b84d1d',
+      created_at: '2022-01-06T17:30:05.519Z!',
+    })
+
+    expect(response.status).toEqual(400)
+    expect(response.badRequest).toBeTruthy()
+
+    response = await request(app.getHttpServer()).put('/bands').send({
+      band_name: 'mock band name',
+      band_frontman: 'mock band frontman',
+      band_id: '3e3d8eee-dc3a-422f-9658-b08f61b84d1d&',
       created_at: '2022-01-06T17:30:05.519Z!',
     })
 
