@@ -10,7 +10,7 @@ describe('TourManagersController (e2e)', () => {
   let app: INestApplication
 
   const mockService = {
-    getTourManagers: jest.fn((name) => (name ? Promise.resolve(name) : Promise.resolve({}))),
+    getTourManagers: jest.fn().mockResolvedValue({}),
   }
 
   beforeEach(async () => {
@@ -39,7 +39,7 @@ describe('TourManagersController (e2e)', () => {
     const response = await request(app.getHttpServer()).get('/tour_managers').query({ name: 'Sam' })
 
     expect(response.status).toEqual(200)
-    expect(response.text).toEqual('Sam')
+    expect(response.text).toEqual('{}')
   })
 
   it('should validate tour manager name', async () => {

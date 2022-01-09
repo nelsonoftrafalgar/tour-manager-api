@@ -7,17 +7,11 @@ describe('ConcertsService', () => {
 
   const mockService = {
     getConcerts: jest.fn().mockResolvedValue({}),
-    filterConcerts: jest.fn().mockResolvedValue('Oslo'),
-    getConcertsByBandId: jest.fn().mockResolvedValue('id'),
-    createConcert: jest
-      .fn()
-      .mockResolvedValue({ concert_date: '', concert_place: '', band_id: '', tour_manager_id: '' }),
-    updateConcert: jest
-      .fn()
-      .mockResolvedValue({ concert_date: '', concert_place: '', band_id: '', tour_manager_id: '', concert_id: '' }),
-    preventDuplicates: jest
-      .fn()
-      .mockResolvedValue({ concert_date: '', concert_place: '', band_id: '', tour_manager_id: '' }),
+    filterConcerts: jest.fn().mockResolvedValue({}),
+    getConcertsByBandId: jest.fn().mockResolvedValue({}),
+    createConcert: jest.fn().mockResolvedValue({}),
+    updateConcert: jest.fn().mockResolvedValue({}),
+    preventDuplicates: jest.fn().mockResolvedValue({}),
   }
 
   beforeEach(async () => {
@@ -36,17 +30,17 @@ describe('ConcertsService', () => {
   })
 
   it('should get concerts filtered by consert place', async () => {
-    expect(await service.filterConcerts('Oslo')).toEqual('Oslo')
+    expect(await service.filterConcerts('Oslo')).toMatchObject({})
   })
 
   it('should get concert by band id', async () => {
-    expect(await service.getConcertsByBandId('id')).toEqual('id')
+    expect(await service.getConcertsByBandId('id')).toMatchObject({})
   })
 
   it('should create new concert', async () => {
     expect(
       await service.createConcert({ concert_date: '', concert_place: '', band_id: '', tour_manager_id: '' })
-    ).toMatchObject({ concert_date: '', concert_place: '', band_id: '', tour_manager_id: '' })
+    ).toMatchObject({})
   })
 
   it('should upadate concert', async () => {
@@ -58,12 +52,12 @@ describe('ConcertsService', () => {
         tour_manager_id: '',
         concert_id: '',
       })
-    ).toMatchObject({ concert_date: '', concert_place: '', band_id: '', tour_manager_id: '', concert_id: '' })
+    ).toMatchObject({})
   })
 
   it('should prevent duplicates in db', async () => {
     expect(
       await service.preventDuplicates({ concert_date: '', concert_place: '', band_id: '', tour_manager_id: '' })
-    ).toMatchObject({ concert_date: '', concert_place: '', band_id: '', tour_manager_id: '' })
+    ).toMatchObject({})
   })
 })

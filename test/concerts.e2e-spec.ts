@@ -10,8 +10,8 @@ describe('ConcertsController (e2e)', () => {
   let app: INestApplication
 
   const mockService = {
-    getConcerts: jest.fn((place) => (place ? Promise.resolve(place) : Promise.resolve({}))),
-    getConcertsByBandId: jest.fn().mockResolvedValue('d471e2c6-0282-4314-98bc-49836809eb57'),
+    getConcerts: jest.fn().mockResolvedValue({}),
+    getConcertsByBandId: jest.fn().mockResolvedValue({}),
     createConcert: jest.fn().mockResolvedValue({}),
     updateConcert: jest.fn().mockResolvedValue({}),
   }
@@ -42,7 +42,7 @@ describe('ConcertsController (e2e)', () => {
     const response = await request(app.getHttpServer()).get('/concerts').query({ place: 'Paris' })
 
     expect(response.status).toEqual(200)
-    expect(response.text).toEqual('Paris')
+    expect(response.text).toEqual('{}')
   })
 
   it('should validate concert place', async () => {
@@ -53,10 +53,7 @@ describe('ConcertsController (e2e)', () => {
   })
 
   it('should get concert by band id', () => {
-    return request(app.getHttpServer())
-      .get('/concerts/d471e2c6-0282-4314-98bc-49836809eb57')
-      .expect(200)
-      .expect('d471e2c6-0282-4314-98bc-49836809eb57')
+    return request(app.getHttpServer()).get('/concerts/d471e2c6-0282-4314-98bc-49836809eb57').expect(200).expect({})
   })
 
   it('should validate band id', async () => {

@@ -10,9 +10,9 @@ describe('BandsController (e2e)', () => {
   let app: INestApplication
 
   const mockService = {
-    getBands: jest.fn((name) => (name ? Promise.resolve(name) : Promise.resolve({}))),
+    getBands: jest.fn().mockResolvedValue({}),
     getAllBandNames: jest.fn().mockResolvedValue({}),
-    getBandById: jest.fn().mockResolvedValue('3e3d8eee-dc3a-422f-9658-b08f61b84d1d'),
+    getBandById: jest.fn().mockResolvedValue({}),
     createBand: jest.fn().mockResolvedValue({}),
     updateBand: jest.fn().mockResolvedValue({}),
   }
@@ -43,7 +43,7 @@ describe('BandsController (e2e)', () => {
     const response = await request(app.getHttpServer()).get('/bands').query({ name: 'Led' })
 
     expect(response.status).toEqual(200)
-    expect(response.text).toEqual('Led')
+    expect(response.text).toEqual('{}')
   })
 
   it('should validate band name', async () => {
@@ -58,10 +58,7 @@ describe('BandsController (e2e)', () => {
   })
 
   it('should get band by id', () => {
-    return request(app.getHttpServer())
-      .get('/bands/3e3d8eee-dc3a-422f-9658-b08f61b84d1d')
-      .expect(200)
-      .expect('3e3d8eee-dc3a-422f-9658-b08f61b84d1d')
+    return request(app.getHttpServer()).get('/bands/3e3d8eee-dc3a-422f-9658-b08f61b84d1d').expect(200).expect({})
   })
 
   it('should validate band id', async () => {

@@ -7,11 +7,11 @@ describe('BandsService', () => {
 
   const mockService = {
     getBands: jest.fn().mockResolvedValue({}),
-    filterBands: jest.fn().mockResolvedValue('Led'),
-    getBandById: jest.fn().mockResolvedValue('id'),
-    createBand: jest.fn().mockResolvedValue({ band_name: '', band_frontman: '' }),
-    updateBand: jest.fn().mockResolvedValue({ band_name: '', band_frontman: '', band_id: '', created_at: '' }),
-    preventDuplicates: jest.fn().mockResolvedValue({ band_name: '', band_frontman: '' }),
+    filterBands: jest.fn().mockResolvedValue({}),
+    getBandById: jest.fn().mockResolvedValue({}),
+    createBand: jest.fn().mockResolvedValue({}),
+    updateBand: jest.fn().mockResolvedValue({}),
+    preventDuplicates: jest.fn().mockResolvedValue({}),
     getAllBandNames: jest.fn().mockResolvedValue({}),
   }
 
@@ -31,34 +31,25 @@ describe('BandsService', () => {
   })
 
   it('should get bands filtered by name', async () => {
-    expect(await service.filterBands('Led')).toEqual('Led')
+    expect(await service.filterBands('Led')).toMatchObject({})
   })
 
   it('should get band by id', async () => {
-    expect(await service.getBandById('id')).toEqual('id')
+    expect(await service.getBandById('id')).toMatchObject({})
   })
 
   it('should create new band', async () => {
-    expect(await service.createBand({ band_name: '', band_frontman: '' })).toMatchObject({
-      band_name: '',
-      band_frontman: '',
-    })
+    expect(await service.createBand({ band_name: '', band_frontman: '' })).toMatchObject({})
   })
 
   it('should update band', async () => {
-    expect(await service.updateBand({ band_name: '', band_frontman: '', band_id: '', created_at: '' })).toMatchObject({
-      band_name: '',
-      band_frontman: '',
-      band_id: '',
-      created_at: '',
-    })
+    expect(await service.updateBand({ band_name: '', band_frontman: '', band_id: '', created_at: '' })).toMatchObject(
+      {}
+    )
   })
 
   it('should prevent duplicates in db', async () => {
-    expect(await service.preventDuplicates({ band_name: '', band_frontman: '' })).toMatchObject({
-      band_name: '',
-      band_frontman: '',
-    })
+    expect(await service.preventDuplicates({ band_name: '', band_frontman: '' })).toMatchObject({})
   })
 
   it('should get all band names', async () => {

@@ -7,7 +7,7 @@ describe('TourManagersService', () => {
 
   const mockService = {
     getTourManagers: jest.fn().mockResolvedValue({}),
-    filterTourManagers: jest.fn().mockResolvedValue('Sam'),
+    filterTourManagers: jest.fn().mockResolvedValue({}),
   }
 
   beforeEach(async () => {
@@ -26,6 +26,6 @@ describe('TourManagersService', () => {
   })
 
   it('should get tour managers filtered by name', async () => {
-    expect(await service.filterTourManagers('Sam')).toEqual('Sam')
+    expect(await service.filterTourManagers('Sam')).toMatchObject({})
   })
 })
